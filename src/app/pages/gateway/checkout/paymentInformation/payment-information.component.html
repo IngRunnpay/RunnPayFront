@@ -1,0 +1,141 @@
+<ngx-spinner>
+    <app-spinner></app-spinner>
+</ngx-spinner>
+<div class="layout-container">
+    <div class="layout-content-wrapper">
+        <div class="layout-content">
+            <div class="card !py-20 px-12 md:px-20 overflow-auto">
+                <div class="flex-1 px-6 mt-6 md:mt-12 md:px-12">
+                    <span class="text-surface-900 dark:text-surface-0 block font-bold text-xl">Información del
+                        pago</span>
+                </div>
+                <div class="flex flex-wrap gap-4">
+                    <div class="flex-1 px-6 py-6 md:px-12">
+                        <ul class="flex list-none flex-wrap p-0 mb-12">
+                            <li class="flex items-center text-surface-500 dark:text-surface-300 mr-2">
+                                RUNNPAY
+                                <i class="pi pi-chevron-right text-surface-500 dark:text-surface-300 text-xs ml-2"></i>
+                            </li>
+                            <li class="flex items-center text-primary mr-2">
+                                PASARELA
+                                <i class="pi pi-chevron-right text-surface-500 dark:text-surface-300 text-xs ml-2"></i>
+                            </li>
+                        </ul>
+
+                        <div class="mb-6">
+                            <span class="text-900 text-2xl block font-medium mb-5 text-primary">Información de
+                                contacto</span>
+                        </div>
+
+                        <div class="mb-6">
+                            <span class="text-surface-900 dark:text-surface-0 font-medium" style="font-size: 15px;">
+                                {{ResponseDataPay?.usuNombre}}
+                            </span>
+                        </div>
+
+                        <div class="mb-6">
+                            <span class="text-surface-900 dark:text-surface-0 font-medium" style="font-size: 15px;">
+                                {{ResponseDataPay?.Documento}}
+                            </span>
+                        </div>
+
+                        <div class="mb-6">
+                            <span class="text-surface-900 dark:text-surface-0 font-medium" style="font-size: 15px;">
+                                {{ResponseDataPay?.usuCorreo}}
+                            </span>
+                        </div>
+
+                        <div class="lg:col-span-6 mb-6">
+                            <span class="text-surface-900 dark:text-surface-0 font-medium" style="font-size: 15px;">
+                                {{ResponseDataPay?.usuTelefono}}
+                            </span>
+                        </div>
+                        @if(!pse){
+                        <div>
+                            <div class="col-span-12 lg:col-span-6 mb-6">
+                                <br />
+                                <div class="imagen-container">
+                                    <img src="/images/pagos/PSE.png" (click)="pse = true" />
+                                    <img src="/images/pagos/Nequi.png" (click)="CreateLinkNequi()" />
+                                    <img src="/images/pagos/Daviplata.png" (click)="CreateLinkDavi()" />
+                                </div>
+                            </div>
+                        </div>
+                        }@else {
+                        <div>
+                            <div class="col-span-12 lg:col-span-6 mb-6">
+                                <p-dropdown [options]="TipoPersona" placeholder="Seleccione tipo persona"
+                                    optionLabel="Nombre" optionValue="Nombre" [showClear]="true" [(ngModel)]="Persona"
+                                    styleClass="w-full"></p-dropdown>
+                            </div>
+                            <div class="col-span-12 lg:col-span-6 mb-6">
+                                <p-dropdown [options]="ResponseDatabank" placeholder="Seleccione banco"
+                                    optionLabel="name" optionValue="code" [showClear]="true" [(ngModel)]="Banco"
+                                    styleClass="w-full"></p-dropdown>
+                            </div>
+                            <div
+                                class="col-span-12 flex flex-col lg:flex-row justify-center items-center lg:justify-end my-12">
+                                <button pButton pRipple class="p-button-primary w-full flex-order-1 lg:flex-order-2"
+                                    label="Continuar pago" (click)="CreateLinkPSE()" icon="pi pi-fw pi-check"></button>
+                            </div>
+                        </div>
+                        }
+                    </div>
+
+                    <div class="flex-1 px-6 py-6 md:px-12">
+                        <div class="pb-4 border-surface-200 dark:border-surface-700">
+                            <span class="text-900 text-2xl block font-medium mb-5 text-primary">Producto</span>
+                        </div>
+                        <div
+                            class="flex flex-col lg:flex-row flex-wrap lg:items-center py-2 mt-4 border-surface-200 dark:border-surface-700">
+                            <div class="flex-auto lg:ml-4">
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-900 font-bold text-primary"
+                                        style="font-size: 15px;">Referencia</span>
+                                </div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span
+                                        class="text-surface-900 dark:text-surface-0 font-bold palabra-larga">{{ResponseDataPay?.referencia}}</span>
+                                </div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-900 font-bold text-primary"
+                                        style="font-size: 15px;">Descripción</span>
+                                </div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span
+                                        class="text-surface-900 dark:text-surface-0 font-bold palabra-larga">{{ResponseDataPay?.descripcionCompra}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="py-2 mt-4">
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-surface-900 dark:text-surface-0 font-medium">Subtotal</span>
+                                <span class="text-surface-900 dark:text-surface-0"><a>$</a>{{ResponseDataPay?.monto |
+                                    formatoDinero}}</span>
+                            </div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-surface-900 dark:text-surface-0 font-medium">Impuesto</span>
+                                <span class="text-primary font-bold">{{ResponseDataPay?.impuesto}}</span>
+                            </div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-surface-900 dark:text-surface-0 font-bold">Total</span>
+                                <span
+                                    class="text-surface-900 dark:text-surface-0 font-medium text-xl"><a>$</a>{{ResponseDataPay?.montoFinal
+                                    | formatoDinero}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="footer">
+            <div class="footer-content">
+                <img style="width: 186px; height: auto;" class="imgrunn" src="/images/LogoRunnPay.png" alt="Imagen 1">
+            </div>
+        </footer>
+    </div>
+</div>
+<app-configurator />

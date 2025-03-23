@@ -1,0 +1,154 @@
+<ngx-spinner>
+    <app-spinner></app-spinner>
+</ngx-spinner>
+<div class="layout-container">
+    <div class="layout-content-wrapper">
+        <div class="layout-content">
+            <div class="card !py-20 px-12 md:px-20 overflow-auto">
+                <div
+                    class="flex flex-col md:flex-row md:items-center md:justify-between border-b border-surface-200 dark:border-surface-700 pb-8 min-w-max">
+                    <!-- Logo y Razón Social -->
+                    <div class="flex flex-col items-start">
+                        <!-- SVG alineado a la izquierda -->
+                        <svg width="48" height="50" viewBox="0 0 48 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fillRule="evenodd" clipRule="evenodd"
+                                d="M33.1548 9.65956L23.9913 4.86169L5.54723 14.5106L0.924465 12.0851L23.9913 0L37.801 7.23403L33.1548 9.65956ZM23.9931 19.3085L42.4255 9.65955L47.0717 12.0851L23.9931 24.1595L10.1952 16.9361L14.8297 14.5106L23.9931 19.3085ZM4.6345 25.8937L0 23.4681V37.9149L23.0669 50V45.1489L4.6345 35.4894V25.8937ZM18.4324 28.2658L0 18.6169V13.7658L23.0669 25.8403V40.2977L18.4324 37.8615V28.2658ZM38.7301 23.468V18.6169L24.9205 25.8403V49.9999L29.555 47.5743V28.2659L38.7301 23.468ZM43.3546 35.4892V16.1914L48.0008 13.7659V37.9148L34.1912 45.1488V40.2977L43.3546 35.4892Z"
+                                fill="var(--primary-color)" />
+                        </svg>
+
+                        <!-- Texto debajo del SVG alineado a la izquierda -->
+                        <div class="my-4 font-bold text-surface-900 dark:text-surface-0">
+                            <h2 class="mb-4 text-2xl font-medium">{{ResponseDataPay?.razonSocial}}</h2>
+                        </div>
+                    </div>
+
+
+                    <!-- Fecha -->
+                    <div class="flex items-center ml-auto">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-semibold mr-12">FECHA</span>
+                            <span>{{ResponseDataPay?.fechaCreacion | date: "dd/MM/yyyy"}}</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="mt-8 mb-20 flex flex-col">
+                    <div class="mb-4 text-2xl font-medium  text-primary">INFORMACIÓN DE CONTACTO</div>
+                    <span class="mb-2"><b>Nombre:</b> {{ResponseDataPay?.usuNombre}}</span>
+                    <span class="mb-2"><b>Correo:</b> {{ResponseDataPay?.usuCorreo}}</span>
+                    <span class="mb-2"><b>Celular:</b> {{ResponseDataPay?.usuTelefono}}</span>
+                    <span class="mb-2"><b>Documento:</b> {{ResponseDataPay?.usuDocumento}}</span>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full" [style]="{
+                    borderCollapse: 'collapse',
+                    tableLayout: 'auto'
+                }">
+                        <thead>
+                            <tr>
+                                <th
+                                    class="text-left font-semibold py-4 border-b border-surface-200 dark:border-surface-700 whitespace-nowrap  text-primary">
+                                    Referencia</th>
+                                <th
+                                    class="text-left font-semibold py-4 border-b border-surface-200 dark:border-surface-700 whitespace-nowrap px-4  text-primary">
+                                    Descripción</th>
+                                <th
+                                    class="text-left font-semibold py-4 border-b border-surface-200 dark:border-surface-700 whitespace-nowrap px-4  text-primary">
+                                    Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td
+                                    class="text-left py-4 border-b border-surface-200 dark:border-surface-700 whitespace-nowrap">
+                                    {{ResponseDataPay?.referencia}}</td>
+                                <td class="text-right py-4 border-b border-surface-200 dark:border-surface-700 px-4">
+                                    {{ResponseDataPay?.descripcionCompra}}</td>
+                                <td class="text-right py-4 border-b border-surface-200 dark:border-surface-700 px-4">
+                                    {{ResponseDataPay?.montoFinal | formatoDinero}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- <div class="flex flex-col md:flex-row md:items-start md:justify-between mt-20">
+                    
+                    @if(ResponseDataPay.idEstadoTransaccion == 2){
+                    <div class="mb-4 text-2xl font-medium" style="color: rgb(34, 224, 34) !important;">Pago
+                        Aprobado</div>
+                    } @else if (ResponseDataPay.idEstadoTransaccion == 3) {
+                    <div class="mb-4 text-2xl font-medium" style="color: red !important;">Pago Rechazado</div>
+                    } @else if (ResponseDataPay.idEstadoTransaccion == 1){
+                    <div class="mb-4 text-2xl font-medium" style="color: #d3d305 !important;">Pago Pendiente
+                    </div>
+                    } @else {
+                    <div class="mb-4 text-2xl font-medium" style="color: #d3d305 !important;">Pago Pendiente
+                    </div>
+                    }
+                    <div class="flex flex-col">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-semibold mr-12">SUBTOTAL</span>
+                            <span><a>$</a>{{ResponseDataPay?.monto | formatoDinero}}</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-semibold mr-12">IMPUESTO</span>
+                            <span>{{ResponseDataPay?.impuesto}}</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold mr-12  text-primary">TOTAL</span>
+                            <span><a>$</a>{{ResponseDataPay?.montoFinal | formatoDinero}}</span>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="flex flex-col md:flex-row mt-20">
+                    <!-- Estado de pago a la izquierda -->
+                    <div class="flex-1 mb-4 text-2xl font-medium">
+                        @if(ResponseDataPay.idEstadoTransaccion == 2){
+                            <div style="color: rgb(34, 224, 34) !important;">Pago Aprobado</div>
+                        } @else if (ResponseDataPay.idEstadoTransaccion == 3) {
+                            <div style="color: red !important;">Pago Rechazado</div>
+                        } @else if (ResponseDataPay.idEstadoTransaccion == 1){
+                            <div style="color: #d3d305 !important;">Pago Pendiente</div>
+                        } @else {
+                            <div style="color: #d3d305 !important;">Pago Pendiente</div>
+                        }
+                    </div>
+                
+                    <!-- Información del pago (en dos columnas) a la derecha -->
+                    <div class="flex-1 md:flex md:justify-between ml-4">
+                        <!-- Columna 1 (SUBTOTAL, IMPUESTO) -->
+                        <div class="flex flex-col md:w-1/2">
+                            <div class="flex justify-between mb-1">  <!-- Reducido el margin bottom aquí -->
+                                <span class="font-semibold mr-4">SUBTOTAL</span> <!-- Reducido el margin right -->
+                                <span><a>$</a>{{ResponseDataPay?.monto | formatoDinero}}</span>
+                            </div>
+                            <div class="flex justify-between mb-1"> <!-- Reducido el margin bottom aquí -->
+                                <span class="font-semibold mr-4">IMPUESTO</span> <!-- Reducido el margin right -->
+                                <span>{{ResponseDataPay?.impuesto}}</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Columna 2 (TOTAL) -->
+                        <div class="flex flex-col md:w-1/2">
+                            <div class="flex justify-between mb-1"> <!-- Reducido el margin bottom aquí -->
+                                <span class="font-semibold mr-4 text-primary">TOTAL</span> <!-- Reducido el margin right -->
+                                <span><a>$</a>{{ResponseDataPay?.montoFinal | formatoDinero}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="footer-content">
+                <img style="width: 186px; height: auto;" class="imgrunn" src="/images/LogoRunnPay.png" alt="Imagen 1">
+            </div>
+        </footer>
+    </div>
+</div>
+
+<app-configurator />

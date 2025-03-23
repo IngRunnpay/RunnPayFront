@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+@use './tailwind.css';
+@use './assets/layout/layout.scss';
+@use 'primeicons/primeicons.css';
+@use './assets/demo/demo.scss';
+@use './assets/_overrides.scss';
+
+
+.palabra-larga {
+    width: 200px; /* Ajusta el tamaño máximo deseado */
+    word-wrap: break-word; /* Esto permite el salto de línea */
+    overflow-wrap: break-word; /* Alternativa que también hace el mismo efecto */
+}

@@ -1,0 +1,89 @@
+.layout-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 60%;
+    max-width: 900px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 90%;
+        margin-top: 20px;
+    }
+}
+
+.card-images {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    /* Espaciado entre imágenes */
+    margin-top: 20px;
+    /* Separación del contenido */
+}
+
+/* Estilos para el footer */
+.footer {
+    width: 100%;
+    background: #ececec;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* Contenedor de las imágenes */
+.footer-content {
+    display: flex;
+    gap: 20px;
+    /* Espacio entre imágenes */
+}
+
+.imagen-container {
+    display: flex;
+    justify-content: flex-start; /* Alineación a la izquierda */
+    gap: 20px; /* No hay espacio entre las imágenes */
+}
+@media (max-width: 768px) {
+    .imagen-container img {
+        width: 30%; /* Ajustar el tamaño de las imágenes para que encajen */
+
+    }
+}
+
+.imagen-container img {
+    width: 20%; /* Ajustar el tamaño de las imágenes para que encajen */
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.imagen-container img:hover {
+    transform: scale(1.1);
+}
+
+
+
+// .imagen-container {
+//     display: flex;
+//     justify-content: center; /* Alineación centrada de las imágenes */
+//     gap: 12px; /* Ajustamos el espacio entre las imágenes */
+// }
+
+// .imagen-container img {
+//     width: 23%; /* Reducción del tamaño de las imágenes */
+//     height: auto;
+//     cursor: pointer;
+//     transition: transform 0.3s ease;
+// }
+
+// .imagen-container img:hover {
+//     transform: scale(1.1);
+// }
