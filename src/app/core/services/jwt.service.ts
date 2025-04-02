@@ -43,7 +43,13 @@ export class JwtService {
   getApp() { return localStorage.getItem('App'); }
   setApp(Token: any) { return localStorage.setItem('App', Token); }
   removeApp() { return localStorage.removeItem('App'); }
-
+  getNIT() { return localStorage.getItem('NIT'); }
+  setNIT(Token: any) { return localStorage.setItem('NIT', Token); }
+  removeNIT() { return localStorage.removeItem('NIT'); }
+  getPT() { return localStorage.getItem('PT'); }
+  setPT(Token: any) { return localStorage.setItem('PT', Token); }
+  removePT() { return localStorage.removeItem('PT'); }
+  
   tokenJwt() {
     return this.http.post<BaseResponse>(`${this.baseUrl}/Aplicacion/Login`, this.requestJwt);
   }
@@ -58,6 +64,8 @@ export class JwtService {
     this.removeToken();
     this.removeUserId();
     this.removeApp();
+    this.removeNIT();
+    this.removePT();
   }
 
   getAuthToken(): Observable<boolean> {

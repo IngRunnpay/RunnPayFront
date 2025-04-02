@@ -55,9 +55,14 @@
                             <div class="col-span-12 lg:col-span-6 mb-6">
                                 <br />
                                 <div class="imagen-container">
+                                    @if(MedioPse){
                                     <img src="/images/pagos/PSE.png" (click)="pse = true" />
-                                    <img src="/images/pagos/Nequi.png" (click)="CreateLinkNequi()" />
                                     <img src="/images/pagos/Daviplata.png" (click)="CreateLinkDavi()" />
+
+                                    }
+                                    @if (MedioNequiPush) {
+                                    <img src="/images/pagos/Nequi.png" (click)="CreateLinkNequi()" />
+                                    }
                                 </div>
                             </div>
                         </div>

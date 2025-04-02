@@ -20,5 +20,5 @@ export class GatewayService {
 
   CreatePse() {
     return this.http.post<BaseResponse>(`${this.baseUrl}/Gateway/GatewayCreated`, this.requestCreatePse);
-  }
+  } 
 }

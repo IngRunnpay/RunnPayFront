@@ -40,7 +40,7 @@ interface Breadcrumb {
                 </div>
             </li>
             <li class="right-panel-button relative">
-                <!-- <button pButton pRipple type="button" label="Today" style="width: 6.7rem" icon="pi pi-bookmark" class="layout-rightmenu-button !hidden md:!inline-flex font-normal" (click)="onProfileMenuButtonClick()"></button> -->
+                <button pButton pRipple type="button" label="Billetera" style="width: 6.7rem" icon="pi pi-bookmark" class="layout-rightmenu-button !hidden md:!inline-flex font-normal" (click)="onProfileMenuButtonClick()"></button>
                 <Button pButton pRipple style="width: 3.286rem" icon="pi pi-bookmark" class="layout-rightmenu-button !block md:!hidden font-normal" (click)="onProfileMenuButtonClick()"></Button>
             </li>
         </ul>`,

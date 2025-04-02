@@ -1,5 +1,5 @@
 import { ResponseJwt } from '@/core/interface/jwt.interface';
-import { BankPse } from '@/core/interface/transaction.interface';
+import { BankPse, MedioPago } from '@/core/interface/transaction.interface';
 import { GatewayService } from '@/core/services/gateway.service';
 import { JwtService } from '@/core/services/jwt.service';
 import { TransaccionService } from '@/core/services/transaccion.service';
@@ -55,6 +55,11 @@ export class paymentInformation {
   public pse: boolean = false;
   public nequiCode: string = '';
   public DaviPlataCode: string = '';
+  public medioPago: MedioPago[] = [];
+  public MedioPse: boolean = false;
+  public MedioNequiPush: boolean = false;
+
+
 
   constructor(
     private authService: JwtService,
@@ -87,26 +92,52 @@ export class paymentInformation {
                 this.ResponseDataPay = t.Data;
                 if (this.ResponseDataPay.idEstadoTransaccion == 1) {
                   if (t.Respuesta) {
-                    this.transaccionService.GetBankTransaction(params['token']).subscribe(
-                      (b) => {
-                        if (b.Respuesta) {
-                          this.ResponseDatabank = b.Data;
-                          b.Data.forEach(
-                            (d)=> {
-                              if(d.name.toUpperCase().includes('NEQUI')){
-                                  this.nequiCode = d.code
-                              }
-                              if(d.name.toUpperCase().includes('DAVIPLATA')){
-                                  this.DaviPlataCode = d.code
-                              }
+                    this.transaccionService.GetMedioPago(params['token']).subscribe(
+                      (data) => {                        
+                        if(data.Respuesta){
+                          this.medioPago = data.Data;
+                          this.medioPago.forEach(e => {
+                            switch (e.IdMedioPago) {
+                              case 1:
+                                  this.MedioPse = true;
+                                break;
+                              case 3:
+                                  this.MedioNequiPush = true;
+                                break;
+                              default:
+                                break;
                             }
-                          )
+                          });
+                          console.log(this.medioPago)
+                          this.transaccionService.GetBankTransaction(params['token']).subscribe(
+                            (b) => {
+                              if (b.Respuesta) {
+                                this.ResponseDatabank = b.Data;
+                                b.Data.forEach(
+                                  (d)=> {
+                                    if(d.name.toUpperCase().includes('NEQUI')){
+                                        this.nequiCode = d.code
+                                    }
+                                    if(d.name.toUpperCase().includes('DAVIPLATA')){
+                                        this.DaviPlataCode = d.code
+                                    }
+                                  }
+                                )
+                              }
+                            }, (error) => {
+                              this.spinner.hide();
+                              this.toastr.error('No logramos realizar tu gestión, intenta nuevamente.');
+                            }
+                          );
+                        }else{
+                          this.spinner.hide();
+                          this.toastr.error('No logramos realizar tu gestión, intenta nuevamente.');
                         }
                       }, (error) => {
                         this.spinner.hide();
                         this.toastr.error('No logramos realizar tu gestión, intenta nuevamente.');
                       }
-                    );
+                    );                    
                   } else {
                     this.toastr.error(t.Mensaje);
                   }

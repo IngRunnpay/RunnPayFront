@@ -20,4 +20,7 @@ export class TransaccionService {
   GetResumePay(transaccion: string) {
     return this.http.get<BaseResponse>(`${this.baseUrl}/Gateway/ResumePay?IdTransaccion=${transaccion}`);
   }
+  GetMedioPago(IdTransaccion: string) {
+    return this.http.get<BaseResponse>(`${this.baseUrl}/Gateway/GetMetodPagoXUsuario?IdTransaccion=${IdTransaccion}`);
+  }
 }

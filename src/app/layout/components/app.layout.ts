@@ -30,7 +30,7 @@ import {AppProfileMenu} from "@/layout/components/app.profilemenu";
 
                 <div class="layout-mask"></div>
             </div>
-            <!-- <app-profile-menu /> -->
+            <app-profile-menu />
             <app-configurator />
             <p-toast />
         </div>

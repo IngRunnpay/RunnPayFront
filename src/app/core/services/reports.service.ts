@@ -12,7 +12,18 @@ export class ReportsService {
   private baseUrl: string = `${environment.API_URL}/ApiPrincipal`; // URL base de la API
   public requestReportTransaction: RequestReportTransaction = {
     IdUsuario: 0,
-    IdAplicacion: ''
+    IdAplicacion: '',
+    ini: 1,
+    fin: 15,
+    idTransaccion: null,
+    referencia: '',
+    documento: '',
+    fechaInicio: null,
+    fechaFin: null
+  }
+  public contentData: any = {
+    pageNumber: 1,
+    pageSize: 15,
   }
 
   constructor(private http: HttpClient,) { }

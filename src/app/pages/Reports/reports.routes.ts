@@ -4,7 +4,7 @@ export default [
     {
       path: 'transactions',
       data: { breadcrumb: 'Transacciones' },
-      loadComponent: () => import('./transactions/transaction-report.component').then(m => m.TransactionReportComponent),
+      loadComponent: () => import('./report-transacrtion/report-transacrtion.component').then(m => m.ReportTransacrtionComponent),
     },
   ] as Routes;
   

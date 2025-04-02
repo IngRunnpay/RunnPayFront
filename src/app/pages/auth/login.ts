@@ -177,6 +177,8 @@ export class Login {
                         this.datoUsuario = d.Data;
                         this.authService.setUserId(this.datoUsuario.idusuario);
                         this.authService.setApp(this.datoUsuario.cod);
+                        this.authService.setNIT(this.datoUsuario.nit);
+                        this.authService.setPT(this.datoUsuario.pt);
                         this.spinner.hide();
                         this.toastr.success('Código validado correctamente.');
                         this.authService.startExpirationTimer();
