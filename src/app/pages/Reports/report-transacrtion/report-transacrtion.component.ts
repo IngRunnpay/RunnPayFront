@@ -51,6 +51,8 @@ export class ReportTransacrtionComponent {
   GetData() {
     var IdUsuario = this.authService.getUserId();
     var app = this.authService.getApp();
+    this.reportsService.requestReportDispersion.ini = 1;
+    this.reportsService.requestReportDispersion.fin = 15;
     this.reportsService.requestReportTransaction.IdUsuario = parseInt(IdUsuario ?? '0');
     this.reportsService.requestReportTransaction.IdAplicacion = app ?? '';
     this.reportsService.GetReportTransaction().subscribe(
@@ -58,6 +60,8 @@ export class ReportTransacrtionComponent {
         if (data.Respuesta) {
           this.DataReport = data.Data;
           this.totalPa = this.DataReport[0].Conteo;
+          this.reportsService.contentData.pageNumber = 1;
+
         } else {
           this.toast.error(data.Mensaje);
         }
@@ -109,10 +113,10 @@ export class ReportTransacrtionComponent {
   PageChange (event: any){
     this.reportsService.contentData.pageNumber =  event.page + 1;
     this.reportsService.contentData.pageSize = event.rows;
+    this.reportsService.requestReportTransaction.fin =   this.reportsService.contentData.pageNumber * this.reportsService.contentData.pageSize;
+    this.reportsService.requestReportTransaction.ini =  this.reportsService.requestReportTransaction.fin  - this.reportsService.contentData.pageSize;
+    this.reportsService.requestReportTransaction.ini  = (this.reportsService.requestReportTransaction.ini  == 0) ? 1 : this.reportsService.requestReportTransaction.ini;
 
-    this.reportsService.requestReportTransaction.ini =  this.reportsService.contentData.pageNumber * this.reportsService.contentData.pageSize;
-    this.reportsService.requestReportTransaction.fin =   this.reportsService.requestReportTransaction.ini  + this.reportsService.contentData.pageSize;
-    
     this.reportsService.GetReportTransaction().subscribe(
       (data) => {
         if (data.Respuesta) {

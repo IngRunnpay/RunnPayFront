@@ -62,6 +62,11 @@ export class AppMenu {
                     icon: 'pi pi-fw pi-table',
                     routerLink: ['/pages/reports/transactions']
                 },
+                {
+                    label: 'Dispersiones',
+                    icon: 'pi pi-fw pi-table',
+                    routerLink: ['/pages/reports/dispersion']
+                },
             ]
         },
     ];

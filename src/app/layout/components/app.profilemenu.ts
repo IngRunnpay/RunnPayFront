@@ -37,7 +37,7 @@ import { FormatoDineroPipe } from "../../core/pipes/formato-dinero.pipe";
             <div class="flex items-center py-6 px-4 gap-8">
                 <div class="font-medium flex flex-col items-center">
                     <a class="task-number text-blue-500 flex justify-center items-center rounded" style="background: rgba(255, 255, 255, 0.05); padding: 9px; width: 50px; height: 50px; font-size: 30px"><a>$ </a>{{this.Data.pendienteDispersion | formatoDinero}}</a>
-                    <span class="task-name block mt-4">Monto Congelado</span>
+                    <span class="task-name block mt-4">Monto PayOut</span>
                 </div>
             </div>
         </div>
