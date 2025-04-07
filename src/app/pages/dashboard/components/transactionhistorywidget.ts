@@ -12,7 +12,7 @@ import { JwtService } from '@/core/services/jwt.service';
     imports: [TimelineModule, FormatoDineroPipe, CommonModule],
     template: `<div class="card !p-0">
         <div class="timeline-header p-4 flex justify-between items-center">
-            <p class="m-0">HISTORIAL DE TRANSACCIONES</p>
+            <p class="m-0">TRANSACTION HISTORY</p>
             <div class="header-icons">
                 <i class="pi pi-refresh ml-2"></i>
             </div>
@@ -36,7 +36,7 @@ import { JwtService } from '@/core/services/jwt.service';
             </p-timeline>
         </div>
         <div class="timeline-footer border-t border-surface-200 dark:border-surface-700 p-4 flex items-center justify-center">
-            <a href="/pages/reports/transactions" class="text-primary hover:text-primary-400 duration-200">Ver todas las transacciones</a>
+            <a href="/pages/reports/transactions" class="text-primary hover:text-primary-400 duration-200">View all transactions</a>
         </div>
     </div>`,
     styles: `

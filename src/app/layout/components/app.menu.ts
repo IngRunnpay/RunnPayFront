@@ -54,16 +54,16 @@ export class AppMenu {
             ]
         },
         {
-            label: 'Reportes',
+            label: 'Reports',
             icon: 'pi pi-fw pi-chart-line',
             items: [
                 {
-                    label: 'Transacciones',
+                    label: 'Pay In',
                     icon: 'pi pi-fw pi-table',
                     routerLink: ['/pages/reports/transactions']
                 },
                 {
-                    label: 'Dispersiones',
+                    label: 'Pay Out',
                     icon: 'pi pi-fw pi-table',
                     routerLink: ['/pages/reports/dispersion']
                 },

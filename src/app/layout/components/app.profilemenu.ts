@@ -12,7 +12,7 @@ import { FormatoDineroPipe } from "../../core/pipes/formato-dinero.pipe";
     selector: 'app-profile-menu',
     imports: [DrawerModule, DatePickerModule, FormsModule, CommonModule, FormatoDineroPipe],
     standalone: true,
-    template: `<p-drawer [(visible)]="rightMenuVisible" header="Billetera" position="right" styleClass="layout-profile-sidebar !w-full sm:!w-[28rem]" [ngClass]="{ 'layout-rightmenu-active': rightMenuVisible }">
+    template: `<p-drawer [(visible)]="rightMenuVisible" header="Wallet" position="right" styleClass="layout-profile-sidebar !w-full sm:!w-[28rem]" [ngClass]="{ 'layout-rightmenu-active': rightMenuVisible }">
     <div class="layout-rightmenu h-full overflow-y-auto overflow-x-hidden">
         <div class="flex flex-col items-center" style="padding: 4.5rem 0 2rem 0">
             <div class="flex flex-col items-center mb-6">
@@ -25,19 +25,19 @@ import { FormatoDineroPipe } from "../../core/pipes/formato-dinero.pipe";
             <div class="flex items-center py-6 px-4 gap-8">
                 <div class="in-progress font-medium flex flex-col items-center">
                     <span class="task-number text-blue-500 flex justify-center items-center rounded" style="background: rgba(114, 172, 226, 0.05); padding: 9px; width: 50px; height: 50px; font-size: 30px"><a>$ </a>{{this.Data.montoDisponible | formatoDinero}}</span>
-                    <span class="task-name block mt-4">Monto Disponible</span>
+                    <span class="task-name block mt-4">Available Amount</span>
                 </div>
             </div>
             <div class="flex items-center py-6 px-4 gap-8">
                 <div class="font-medium flex flex-col items-center">
                     <a class="task-number text-blue-500 flex justify-center items-center rounded" style="background: rgba(255, 255, 255, 0.05); padding: 9px; width: 50px; height: 50px; font-size: 30px"><a>$ </a>{{this.Data.montoRetirado | formatoDinero}}</a>
-                    <span class="task-name block mt-4">Monto Retirado</span>
+                    <span class="task-name block mt-4">Amount Withdrawn</span>
                 </div>
             </div>
             <div class="flex items-center py-6 px-4 gap-8">
                 <div class="font-medium flex flex-col items-center">
                     <a class="task-number text-blue-500 flex justify-center items-center rounded" style="background: rgba(255, 255, 255, 0.05); padding: 9px; width: 50px; height: 50px; font-size: 30px"><a>$ </a>{{this.Data.pendienteDispersion | formatoDinero}}</a>
-                    <span class="task-name block mt-4">Monto PayOut</span>
+                    <span class="task-name block mt-4">Payout Amount</span>
                 </div>
             </div>
         </div>

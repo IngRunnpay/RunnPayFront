@@ -15,7 +15,7 @@ export const appRoutes: Routes = [
             },
             {
                 path: 'reports',
-                data: { breadcrumb: 'Reportes' },
+                data: { breadcrumb: 'Reports' },
                 loadChildren: () => import('@/pages/Reports/reports.routes')
             },
 

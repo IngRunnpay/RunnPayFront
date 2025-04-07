@@ -9,7 +9,7 @@ import { JwtService } from '@/core/services/jwt.service';
     template: `
         <div class="col-span-12 md:col-span-4">
             <div class="card relative h-28 rounded-xl !p-4">
-                <span class="text-sm font-medium leading-none">TRANSACCIONES APROBADAS</span>
+                <span class="text-sm font-medium leading-none">APPROVED TRANSACTIONS</span>
                 <div class="flex justify-between">
                     <div class="flex justify-between items-center">
                         <div class="flex justify-center items-center h-8 w-20 rounded p-2 mr-4 text-black" style="margin-right: 12px; background-color: #0bd18a; box-shadow: 0px 6px 20px rgba(11, 209, 138, 0.3)">
@@ -24,7 +24,7 @@ import { JwtService } from '@/core/services/jwt.service';
         </div>
         <div class="col-span-12 md:col-span-4">
             <div class="card relative h-28 rounded-xl !p-4">
-                <span class="text-sm font-medium leading-none">TRANSACCIONES PENDIENTES</span>
+                <span class="text-sm font-medium leading-none">PENDING TRANSACTIONS</span>
                 <div class="flex justify-between">
                     <div class="flex justify-between items-center">
                         <div class="flex justify-center items-center h-8 w-20 rounded p-2 mr-4 text-black" style="background-color: #00d0de; box-shadow: 0px 6px 20px rgba(0, 208, 222, 0.3)">
@@ -39,7 +39,7 @@ import { JwtService } from '@/core/services/jwt.service';
         </div>
         <div class="col-span-12 md:col-span-4">
             <div class="card relative h-28 rounded-xl !p-4">
-                <span class="text-sm font-medium leading-none">TRANSACCIONES RECHAZADAS</span>
+                <span class="text-sm font-medium leading-none">REJECTED TRANSACTIONS</span>
                 <div class="flex justify-between">
                     <div class="flex justify-between items-center">
                         <div class="flex justify-center items-center h-8 w-20 rounded p-2 mr-4 text-black" style="background-color: #fc6161; box-shadow: 0px 6px 20px rgba(252, 97, 97, 0.3)">
