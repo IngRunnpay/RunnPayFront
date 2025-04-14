@@ -14,11 +14,12 @@ export class GatewayService {
   public requestCreatePse: RequestCreatePse = {
     idTransaccion: '',
     banco: '',
-    persona: ''
+    persona: '',
+    idmedioPago: 0
   } 
   constructor(private http: HttpClient,) { }
-
-  CreatePse() {
-    return this.http.post<BaseResponse>(`${this.baseUrl}/Gateway/GatewayCreated`, this.requestCreatePse);
+  
+  Payment() {
+    return this.http.post<BaseResponse>(`${this.baseUrl}/Gateway/Payment`, this.requestCreatePse);
   } 
 }

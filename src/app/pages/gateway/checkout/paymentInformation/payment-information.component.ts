@@ -20,6 +20,7 @@ import { SpinnerComponent } from '@/apps/spinner/spinner.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CheckboxModule } from 'primeng/checkbox';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-prueba',
@@ -36,7 +37,8 @@ import { CheckboxModule } from 'primeng/checkbox';
     InputTextModule,
     InputNumberModule,
     CheckboxModule,
-    AppConfigurator
+    AppConfigurator,
+    DialogModule
   ],
   templateUrl: './payment-information.component.html',
   styleUrl: './payment-information.component.scss'
@@ -58,6 +60,8 @@ export class paymentInformation {
   public medioPago: MedioPago[] = [];
   public MedioPse: boolean = false;
   public MedioNequiPush: boolean = false;
+  public Modal: boolean = false;
+  public redirect: string = '';
 
 
 
@@ -70,6 +74,7 @@ export class paymentInformation {
     private spinner: NgxSpinnerService,
     private toastr: ToastrService
   ) {
+    this.Modal = false;
     this.TipoPersona = [
       { Nombre: "NATURAL" },
       { Nombre: "JURÍDICA" }
@@ -77,6 +82,7 @@ export class paymentInformation {
     ];
   }
   ngOnInit(): void {
+    this.Modal = false;
     this.spinner.show();
     this.authService.emptySession();
     this.authService.tokenJwt().subscribe(
@@ -93,33 +99,32 @@ export class paymentInformation {
                 if (this.ResponseDataPay.idEstadoTransaccion == 1) {
                   if (t.Respuesta) {
                     this.transaccionService.GetMedioPago(params['token']).subscribe(
-                      (data) => {                        
-                        if(data.Respuesta){
+                      (data) => {
+                        if (data.Respuesta) {
                           this.medioPago = data.Data;
                           this.medioPago.forEach(e => {
                             switch (e.IdMedioPago) {
                               case 1:
-                                  this.MedioPse = true;
+                                this.MedioPse = true;
                                 break;
                               case 3:
-                                  this.MedioNequiPush = true;
+                                this.MedioNequiPush = true;
                                 break;
                               default:
                                 break;
                             }
                           });
-                          console.log(this.medioPago)
                           this.transaccionService.GetBankTransaction(params['token']).subscribe(
                             (b) => {
                               if (b.Respuesta) {
                                 this.ResponseDatabank = b.Data;
                                 b.Data.forEach(
-                                  (d)=> {
-                                    if(d.name.toUpperCase().includes('NEQUI')){
-                                        this.nequiCode = d.code
+                                  (d) => {
+                                    if (d.name.toUpperCase().includes('NEQUI')) {
+                                      this.nequiCode = d.code
                                     }
-                                    if(d.name.toUpperCase().includes('DAVIPLATA')){
-                                        this.DaviPlataCode = d.code
+                                    if (d.name.toUpperCase().includes('DAVIPLATA')) {
+                                      this.DaviPlataCode = d.code
                                     }
                                   }
                                 )
@@ -129,7 +134,7 @@ export class paymentInformation {
                               this.toastr.error('No logramos realizar tu gestión, intenta nuevamente.');
                             }
                           );
-                        }else{
+                        } else {
                           this.spinner.hide();
                           this.toastr.error('No logramos realizar tu gestión, intenta nuevamente.');
                         }
@@ -137,7 +142,7 @@ export class paymentInformation {
                         this.spinner.hide();
                         this.toastr.error('No logramos realizar tu gestión, intenta nuevamente.');
                       }
-                    );                    
+                    );
                   } else {
                     this.toastr.error(t.Mensaje);
                   }
@@ -163,67 +168,36 @@ export class paymentInformation {
     )
   }
 
-  CreateLinkPSE() {
+  Payment(IdMedioPago: number) {
     this.spinner.show();
-    if (this.Persona == null || this.Persona == '') {
-      this.spinner.hide();
-      this.toastr.warning('Seleccione el tipo de persona.');
-    } else {
+    this.Modal = false;
+    if (IdMedioPago == 1) {
+      if (this.Persona == null || this.Persona == '') {
+        this.spinner.hide();
+        this.toastr.warning('Seleccione el tipo de persona.');
+        return;
+      }
       if (this.Banco == null || this.Banco == '') {
         this.spinner.hide();
         this.toastr.warning('Seleccione el banco deseado.');
-      } else {
-        this.gatewayService.requestCreatePse.banco = this.Banco;
-        this.gatewayService.requestCreatePse.persona = this.Persona;
-        this.gatewayService.requestCreatePse.idTransaccion = this.transaccion;
-        this.gatewayService.CreatePse().subscribe(
-          (e) => {
-            if (e.Respuesta) {
-              this.spinner.hide();
-              window.open(e.Data.toString(), '_self');
-            } else {
-              this.spinner.hide();
-              this.toastr.error(e.Mensaje);
-            }
-          }, (error) => {
-            this.spinner.hide();
-            this.toastr.error('No logramos realizar tu gestión, intenta nuevamente.');
-          }
-        );
+        return;
       }
     }
-  }
-  CreateLinkNequi() {
-    this.spinner.show();
-    this.gatewayService.requestCreatePse.banco = this.nequiCode;
-    this.gatewayService.requestCreatePse.persona = 'NATURAL';
+    this.gatewayService.requestCreatePse.banco = this.Banco;
+    this.gatewayService.requestCreatePse.persona = this.Persona;
     this.gatewayService.requestCreatePse.idTransaccion = this.transaccion;
-    this.gatewayService.CreatePse().subscribe(
-      (e) => {
-        if (e.Respuesta) {
-          this.spinner.hide();
-          window.open(e.Data.toString(), '_self');
-        } else {
-          this.spinner.hide();
-          this.toastr.error(e.Mensaje);
-        }
-      }, (error) => {
-        this.spinner.hide();
-        this.toastr.error('No logramos realizar tu gestión, intenta nuevamente.');
-      }
-    );
-  }
-  CreateLinkDavi() {
-    this.spinner.show();
+    this.gatewayService.requestCreatePse.idmedioPago = IdMedioPago;
 
-    this.gatewayService.requestCreatePse.banco = this.DaviPlataCode;
-    this.gatewayService.requestCreatePse.persona = 'NATURAL';
-    this.gatewayService.requestCreatePse.idTransaccion = this.transaccion;
-    this.gatewayService.CreatePse().subscribe(
+    this.gatewayService.Payment().subscribe(
       (e) => {
         if (e.Respuesta) {
           this.spinner.hide();
-          window.open(e.Data.toString(), '_self');
+          this.redirect = e.Data.toString();
+          if (IdMedioPago == 1) {
+            window.open(e.Data.toString(), '_self');
+          } else {
+            this.Modal = true;
+          }
         } else {
           this.spinner.hide();
           this.toastr.error(e.Mensaje);
@@ -234,4 +208,10 @@ export class paymentInformation {
       }
     );
   }
+  closeModal() {
+    this.Modal = false;
+    window.open(this.redirect, '_self');
+
+  }
+  
 }

@@ -1,0 +1,1 @@
+import"./chunk-4CLCTAJ7.js";var t=[{path:"transactions",data:{breadcrumb:"Transacciones"},loadComponent:()=>import("./chunk-MTFNOGYJ.js").then(o=>o.ReportTransacrtionComponent)},{path:"dispersion",data:{breadcrumb:"Dispersi\xF3n"},loadComponent:()=>import("./chunk-KT7ZKFCG.js").then(o=>o.ReportDispersionComponent)}];export{t as default};

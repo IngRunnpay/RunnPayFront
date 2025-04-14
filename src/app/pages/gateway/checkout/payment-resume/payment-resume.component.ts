@@ -51,6 +51,7 @@ export class PaymentResumeComponent {
                             (r) => {
                                 if (r.Respuesta) {
                                     this.ResponseDataPay = r.Data
+                                    
                                     this.spinner.hide();
                                 } else {
                                     this.spinner.hide();

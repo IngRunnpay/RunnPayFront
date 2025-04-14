@@ -57,11 +57,9 @@
                                 <div class="imagen-container">
                                     @if(MedioPse){
                                     <img src="/images/pagos/PSE.png" (click)="pse = true" />
-                                    <img src="/images/pagos/Daviplata.png" (click)="CreateLinkDavi()" />
-
                                     }
                                     @if (MedioNequiPush) {
-                                    <img src="/images/pagos/Nequi.png" (click)="CreateLinkNequi()" />
+                                    <img src="/images/pagos/Nequi.png" (click)="Payment(3)" />
                                     }
                                 </div>
                             </div>
@@ -81,7 +79,7 @@
                             <div
                                 class="col-span-12 flex flex-col lg:flex-row justify-center items-center lg:justify-end my-12">
                                 <button pButton pRipple class="p-button-primary w-full flex-order-1 lg:flex-order-2"
-                                    label="Continuar pago" (click)="CreateLinkPSE()" icon="pi pi-fw pi-check"></button>
+                                    label="Continuar pago" (click)="Payment(1)" icon="pi pi-fw pi-check"></button>
                             </div>
                         </div>
                         }
@@ -144,3 +142,14 @@
     </div>
 </div>
 <app-configurator />
+
+<p-dialog header="¡Hola!" [(visible)]="Modal" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '30vw' }"
+    [modal]="true" [closable]="false">
+    <p class="leading-normal m-0">
+        Te llegará una notificación a tu Nequi con el valor de este cobro.<br>
+        Cuando hagas el pago, te avisaremos cómo va el proceso.
+    </p>
+    <ng-template #footer>
+        <p-button label="Finalizar" (click)="closeModal()" />
+    </ng-template>
+</p-dialog>
