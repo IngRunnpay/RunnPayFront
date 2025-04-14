@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="font-semibold text-xl mb-4">Transacciones</div>
+    <div class="font-semibold text-xl mb-4">Transactions</div>
     <p-table #dt1 [value]="DataReport" dataKey="id" [rows]="15" [rowHover]="true" [showGridlines]="true"
         [paginator]="false" responsiveLayout="scroll">
         <ng-template #caption>
@@ -7,22 +7,22 @@
 
             <div>
                 <input type="text" pInputText [(ngModel)]="reportsService.requestReportTransaction.idTransaccion"
-                    style="margin: 2px;" placeholder="Id Transaccion" />
+                    style="margin: 2px;" placeholder="Transaction ID" />
                 <input type="text" pInputText [(ngModel)]="reportsService.requestReportTransaction.referencia"
-                    style="margin: 2px;" placeholder="Referencia" />
+                    style="margin: 2px;" placeholder="Reference" />
                 <input type="text" pInputText [(ngModel)]="reportsService.requestReportTransaction.documento"
-                    style="margin: 2px;" placeholder="documento" />
+                    style="margin: 2px;" placeholder="Document" />
                 <p-datepicker [(ngModel)]="reportsService.requestReportTransaction.fechaInicio" [iconDisplay]="'input'"
-                    [showIcon]="true" inputId="icondisplay" placeholder="Fecha inicio" />
+                    [showIcon]="true" inputId="icondisplay" placeholder="Start date" />
                 <p-datepicker [(ngModel)]="reportsService.requestReportTransaction.fechaFin" [iconDisplay]="'input'"
-                    [showIcon]="true" inputId="icondisplay" placeholder="Fecha fin" />
+                    [showIcon]="true" inputId="icondisplay" placeholder="End date" />
             </div>
 
             <div class="flex justify-between items-center flex-col sm:flex-row">
                 <div class="flex ">
-                    <button pButton label="Limpiar" class="p-button-outlined mb-2" icon="pi pi-filter-slash"
+                    <button pButton label="Clean" class="p-button-outlined mb-2" icon="pi pi-filter-slash"
                         (click)="clear()" style="margin: 2px;"></button>
-                    <button pButton label="Buscar" class="p-button-outlined mb-2" icon="pi pi-search"
+                    <button pButton label="Look for" class="p-button-outlined mb-2" icon="pi pi-search"
                         (click)="GetData()" style="margin: 2px;"></button>
                 </div>
                 <!-- <button pButton class="p-button-outlined mb-2" icon="pi pi-file-excel"

@@ -54,7 +54,7 @@ import { JwtService } from '../../core/services/jwt.service';
                                 [hideOnOutsideClick]="true"
                             >
                                 <i class="pi pi-fw pi-sign-out mr-2"></i>
-                                <span>Cerrar Sesión</span>
+                                <span>Log Out</span>
                             </a>
                         </li>
 
@@ -91,7 +91,7 @@ import { JwtService } from '../../core/services/jwt.service';
                 </li>
 
                 <li class="right-panel-button relative !hidden lg:!block">
-                    <button pButton pRipple type="button" label="Billetera" style="width: 5.7rem" icon="pi pi-bookmark" class="layout-rightmenu-button !hidden md:!inline-flex font-normal" (click)="onProfileMenuButtonClick()"></button>
+                    <button pButton pRipple type="button" label="Wallet" style="width: 5.7rem" icon="pi pi-bookmark" class="layout-rightmenu-button !hidden md:!inline-flex font-normal" (click)="onProfileMenuButtonClick()"></button>
                     <button pButton pRipple type="button" icon="pi pi-bookmark" class="layout-rightmenu-button !block md:!hidden font-normal" (click)="onSidebarButtonClick()"></button>
                 </li>
             </ul>

@@ -14,23 +14,23 @@ import { JwtService } from '../../../core/services/jwt.service';
     imports: [FormsModule, SelectModule, ChartModule, FormatoDineroPipe],
     template: `<div class="card widget-visitor-graph">
         <div class="card-header leading-loose">
-            <span>TRANSACCIONES ANUALES</span>
+            <span>ANNUAL TRANSACTIONS</span>
             <p-select [options]="visitorYear" [(ngModel)]="selectedVisitorYear" optionLabel="name"></p-select>
         </div>
 
         <div class="graph-content grid grid-cols-12 gap-4 mt-6">
             <div class="col-span-12 md:col-span-6">
                 <div class="text-3xl font-semibold"><a>$</a>{{Aprobado.toString()| formatoDinero}}</div>
-                <div class="font-semibold my-4">APROBADAS</div>
+                <div class="font-semibold my-4">APPROVED</div>
                 <p class="text-surface-500 dark:text-surface-400">
-                    Total en transacciones aprobadas. 
+                    Total approved transactions. 
                 </p>
             </div>
             <div class="col-span-12 md:col-span-6">
                 <div class="text-3xl font-semibold"><a>$</a>{{Rechazado.toString() | formatoDinero}}</div>
-                <div class="font-semibold my-4">RECHAZADAS</div>
+                <div class="font-semibold my-4">REJECTED</div>
                 <p class="text-surface-500 dark:text-surface-400">
-                    Total en transacciones rechazadas.
+                Total in rejected transactions.
                 </p>
             </div>
         </div>
@@ -102,7 +102,7 @@ export class UniqueVisitorWidget implements OnInit, OnDestroy {
                     labels: meses,
                     datasets: [
                         {
-                            label: 'Rechazadas',
+                            label: 'Rejected',
                             data: montoRechazado,
                             backgroundColor: '#fc6161',
                             fill: true,
@@ -111,7 +111,7 @@ export class UniqueVisitorWidget implements OnInit, OnDestroy {
                             borderSkipped: false,
                         },
                         {
-                            label: 'Aprobadas',
+                            label: 'Approved',
                             data: montoAprobado,
                             backgroundColor: '#0bd18a',
                             fill: true,
