@@ -24,35 +24,20 @@ import { FormatoDineroPipe } from "../../core/pipes/formato-dinero.pipe";
             </div>
             <div class="flex items-center py-6 px-4 gap-8">
                 <div class="in-progress font-medium flex flex-col items-center">
-<<<<<<< HEAD
                     <span class="task-number text-blue-500 flex justify-center items-center rounded" style="background: rgba(114, 172, 226, 0.05); padding: 9px; width: 50px; height: 50px; font-size: 30px">{{this.Data.montoDisponible | currency}}</span>
-                    <span class="task-name block mt-4">Monto Disponible</span>
-=======
-                    <span class="task-number text-blue-500 flex justify-center items-center rounded" style="background: rgba(114, 172, 226, 0.05); padding: 9px; width: 50px; height: 50px; font-size: 30px"><a>$ </a>{{this.Data.montoDisponible | formatoDinero}}</span>
                     <span class="task-name block mt-4">Available Amount</span>
->>>>>>> fa2ccfeacb276daddccfeaed1e1b6ba3bee6e596
                 </div>
             </div>
             <div class="flex items-center py-6 px-4 gap-8">
                 <div class="font-medium flex flex-col items-center">
-<<<<<<< HEAD
                     <a class="task-number text-blue-500 flex justify-center items-center rounded" style="background: rgba(255, 255, 255, 0.05); padding: 9px; width: 50px; height: 50px; font-size: 30px">{{this.Data.montoRetirado | currency}}</a>
-                    <span class="task-name block mt-4">Monto Retirado</span>
-=======
-                    <a class="task-number text-blue-500 flex justify-center items-center rounded" style="background: rgba(255, 255, 255, 0.05); padding: 9px; width: 50px; height: 50px; font-size: 30px"><a>$ </a>{{this.Data.montoRetirado | formatoDinero}}</a>
                     <span class="task-name block mt-4">Amount Withdrawn</span>
->>>>>>> fa2ccfeacb276daddccfeaed1e1b6ba3bee6e596
                 </div>
             </div>
             <div class="flex items-center py-6 px-4 gap-8">
                 <div class="font-medium flex flex-col items-center">
-<<<<<<< HEAD
                     <a class="task-number text-blue-500 flex justify-center items-center rounded" style="background: rgba(255, 255, 255, 0.05); padding: 9px; width: 50px; height: 50px; font-size: 30px">{{this.Data.pendienteDispersion | currency}}</a>
-                    <span class="task-name block mt-4">Monto PayOut</span>
-=======
-                    <a class="task-number text-blue-500 flex justify-center items-center rounded" style="background: rgba(255, 255, 255, 0.05); padding: 9px; width: 50px; height: 50px; font-size: 30px"><a>$ </a>{{this.Data.pendienteDispersion | formatoDinero}}</a>
                     <span class="task-name block mt-4">Payout Amount</span>
->>>>>>> fa2ccfeacb276daddccfeaed1e1b6ba3bee6e596
                 </div>
             </div>
         </div>

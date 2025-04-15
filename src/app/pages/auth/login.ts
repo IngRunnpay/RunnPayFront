@@ -73,9 +73,9 @@ import { SpinnerComponent } from "../../apps/spinner/spinner.component";
                         </div>
                         <div class="mt-6">
                             @if(MostrarOtp){
-                                <button pButton pRipple type="button" class="block" style="max-width: 320px; margin-bottom: 32px" (click)="ValidarOtp()">Validar</button>
+                                <button pButton pRipple type="button" class="block" style="max-width: 320px; margin-bottom: 32px" (click)="ValidarOtp()">Validate</button>
                             }@else {
-                                <button pButton pRipple type="button" class="block" style="max-width: 320px; margin-bottom: 32px" (click)="Login()">Enviar</button>
+                                <button pButton pRipple type="button" class="block" style="max-width: 320px; margin-bottom: 32px" (click)="Login()">Send</button>
                             }
                         </div>
                     </div>
