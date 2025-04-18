@@ -31,7 +31,7 @@ import { JwtService } from '@/core/services/jwt.service';
                             <a>$</a>{{ event.MontoFinal | formatoDinero }}
                         </h6>
                     </div>
-                    <span class="text-sm text-surface-500 dark:text-surface-400">{{ event.FechaCreacion | date: "dd/MM/yyyy"}}</span>
+                    <span class="text-sm text-surface-500 dark:text-surface-400">{{ event.FechaCreacion | date: 'dd/MM/yyyy HH:mm:ss'}}</span>
                 </ng-template>
             </p-timeline>
         </div>

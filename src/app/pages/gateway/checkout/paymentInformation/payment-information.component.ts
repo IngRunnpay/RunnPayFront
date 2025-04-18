@@ -21,6 +21,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DialogModule } from 'primeng/dialog';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-prueba',
@@ -38,7 +39,8 @@ import { DialogModule } from 'primeng/dialog';
     InputNumberModule,
     CheckboxModule,
     AppConfigurator,
-    DialogModule
+    DialogModule,
+    CommonModule
   ],
   templateUrl: './payment-information.component.html',
   styleUrl: './payment-information.component.scss'
@@ -131,16 +133,16 @@ export class paymentInformation {
                               }
                             }, (error) => {
                               this.spinner.hide();
-                              this.toastr.error('No logramos realizar tu gestión, intenta nuevamente.');
+                              this.toastr.error('We were unable to complete your request, please try again.');
                             }
                           );
                         } else {
                           this.spinner.hide();
-                          this.toastr.error('No logramos realizar tu gestión, intenta nuevamente.');
+                          this.toastr.error('We were unable to complete your request, please try again.');
                         }
                       }, (error) => {
                         this.spinner.hide();
-                        this.toastr.error('No logramos realizar tu gestión, intenta nuevamente.');
+                        this.toastr.error('We were unable to complete your request, please try again.');
                       }
                     );
                   } else {
@@ -152,7 +154,7 @@ export class paymentInformation {
 
               }, (error) => {
                 this.spinner.hide();
-                this.toastr.error('No logramos realizar tu gestión, intenta nuevamente.');
+                this.toastr.error('We were unable to complete your request, please try again.');
               }
             );
           })
@@ -163,7 +165,7 @@ export class paymentInformation {
         }
       }, (error) => {
         this.spinner.hide();
-        this.toastr.error('No logramos realizar tu gestión, intenta nuevamente.');
+        this.toastr.error('We were unable to complete your request, please try again.');
       }
     )
   }
@@ -204,7 +206,7 @@ export class paymentInformation {
         }
       }, (error) => {
         this.spinner.hide();
-        this.toastr.error('No logramos realizar tu gestión, intenta nuevamente.');
+        this.toastr.error('We were unable to complete your request, please try again.');
       }
     );
   }

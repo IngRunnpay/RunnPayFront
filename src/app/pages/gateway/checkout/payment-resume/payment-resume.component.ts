@@ -59,7 +59,7 @@ export class PaymentResumeComponent {
                                 }
                             }, (error) => {
                                 this.spinner.hide();
-                                this.toastr.error('No logramos realizar tu gestión, intenta nuevamente.');
+                                this.toastr.error('We were unable to complete your request, please try again.');
                             }
                         );
                     })
@@ -69,7 +69,7 @@ export class PaymentResumeComponent {
                 }
             }, (error) => {
                 this.spinner.hide();
-                this.toastr.error('No logramos realizar tu gestión, intenta nuevamente.');
+                this.toastr.error('We were unable to complete your request, please try again.');
             }
         )
     }

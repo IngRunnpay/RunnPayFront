@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { dashboardService } from '../../../core/services/dashboard.service';
-import { FormatoDineroPipe } from "../../../core/pipes/formato-dinero.pipe";
 import { JwtService } from '@/core/services/jwt.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'stats-widget',
@@ -16,7 +16,7 @@ import { JwtService } from '@/core/services/jwt.service';
                             <i class="pi pi-arrow-up w-8"></i>
                             <span class="leading-tight">{{DataPorcentaje?.porcentajeAprobado}}%</span>
                         </div>
-                        <div class="leading-loose text-3xl"><a>$</a>{{DataPorcentaje?.montoAprobado | formatoDinero}}</div>
+                        <div class="leading-loose text-3xl">{{DataPorcentaje?.montoAprobado  | currency}}</div>
                     </div>
                 </div>
                 <img class="absolute" style="bottom: 14px; right: 12px" src="/images/ecommerce-dashboard/value.svg" />
@@ -31,7 +31,7 @@ import { JwtService } from '@/core/services/jwt.service';
                             <i class="pi pi-minus w-8"></i>
                             <span class="leading-tight">{{DataPorcentaje?.porcentajePendiente}}%</span>
                         </div>
-                        <div class="leading-loose text-3xl"><a>$</a>{{DataPorcentaje?.montoPendiente | formatoDinero}}</div>
+                        <div class="leading-loose text-3xl">{{DataPorcentaje?.montoPendiente  | currency}}</div>
                     </div>
                 </div>
                 <img class="absolute" style="bottom: 14px; right: 12px" src="/images/ecommerce-dashboard/quantity.svg" />
@@ -46,7 +46,7 @@ import { JwtService } from '@/core/services/jwt.service';
                             <i class="pi pi-arrow-down w-8"></i>
                             <span class="leading-tight">{{DataPorcentaje?.porcentajeRechazo}}%</span>
                         </div>
-                        <div class="leading-loose text-3xl"><a>$</a>{{DataPorcentaje?.montoRechazo | formatoDinero}}</div>
+                        <div class="leading-loose text-3xl">{{DataPorcentaje?.montoRechazo  | currency}}</div>
                     </div>
                 </div>
                 <img class="absolute inline-block" style="bottom: 14px; right: 12px" src="/images/ecommerce-dashboard/rate.svg" />
@@ -55,7 +55,8 @@ import { JwtService } from '@/core/services/jwt.service';
     host: {
         class: 'col-span-12 grid grid-cols-12 gap-4'
     },
-    imports: [FormatoDineroPipe]
+    imports: [CommonModule
+    ]
 })
 export class StatsWidget {
     public DataPorcentaje: any;

@@ -94,13 +94,13 @@
                     {{ customer.Referencia}}
                 </td>
                 <td>
-                    {{ customer.MontoFinal | formatoDinero}}
+                    {{ customer.MontoFinal  | currency}}
                 </td>
                 <td>
                     {{ customer.Moneda}}
                 </td>
                 <td>
-                    {{ customer.FechaCreacion | date: "dd/MM/yyyy"}}
+                    {{ customer.FechaCreacion | date: 'dd/MM/yyyy HH:mm:ss'}}
                 </td>
                 <td>
                     {{ customer.UsuDocumento}}

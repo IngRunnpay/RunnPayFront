@@ -3,8 +3,6 @@
     <p-table #dt1 [value]="DataReport" dataKey="id" [rows]="15" [rowHover]="true" [showGridlines]="true"
         [paginator]="false" responsiveLayout="scroll">
         <ng-template #caption>
-           
-
             <div>
                 <input type="text" pInputText [(ngModel)]="reportsService.requestReportDispersion.idDispersion"
                     style="margin: 2px;" placeholder="Id Dispersion" />
@@ -85,7 +83,7 @@
                     <span>{{ customer.IdDispersion }}</span>
                 </td>
                 <td>
-                    <span>{{ customer.Monto  | formatoDinero }}</span>
+                    <span>{{ customer.Monto  | currency }}</span>
                 </td>
                 <td>
                     <p-tag [value]="customer.Estado" [severity]="getSeverity(customer.Estado)" />
@@ -100,7 +98,7 @@
                     {{ customer.NumeroCuenta}}
                 </td>
                 <td>
-                    {{ customer.FechaCreacion | date: "dd/MM/yyyy"}}
+                    {{ customer.FechaCreacion | date: 'dd/MM/yyyy HH:mm:ss'}}
                 </td>
                 <td>
                     {{ customer.NumeroDocumento}}

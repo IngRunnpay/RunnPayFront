@@ -27,7 +27,7 @@
                     <div class="flex items-center ml-auto">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-semibold mr-12">FECHA</span>
-                            <span>{{ResponseDataPay?.fechaCreacion | date: "dd/MM/yyyy"}}</span>
+                            <span>{{ResponseDataPay?.fechaCreacion | date: 'dd/MM/yyyy HH:mm:ss'}}</span>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                                 <td class="text-right py-4 border-b border-surface-200 dark:border-surface-700 px-4">
                                     {{ResponseDataPay?.descripcionCompra}}</td>
                                 <td class="text-right py-4 border-b border-surface-200 dark:border-surface-700 px-4">
-                                    {{ResponseDataPay?.montoFinal | formatoDinero}}</td>
+                                    {{ResponseDataPay?.montoFinal | currency}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -124,7 +124,7 @@
                         <div class="flex flex-col md:w-1/2">
                             <div class="flex justify-between mb-1">  <!-- Reducido el margin bottom aquí -->
                                 <span class="font-semibold mr-4">SUBTOTAL</span> <!-- Reducido el margin right -->
-                                <span><a>$</a>{{ResponseDataPay?.monto | formatoDinero}}</span>
+                                <span><a>$</a>{{ResponseDataPay?.monto | currency}}</span>
                             </div>
                             <div class="flex justify-between mb-1"> <!-- Reducido el margin bottom aquí -->
                                 <span class="font-semibold mr-4">IMPUESTO</span> <!-- Reducido el margin right -->
@@ -136,7 +136,7 @@
                         <div class="flex flex-col md:w-1/2">
                             <div class="flex justify-between mb-1"> <!-- Reducido el margin bottom aquí -->
                                 <span class="font-semibold mr-4 text-primary">TOTAL</span> <!-- Reducido el margin right -->
-                                <span><a>$</a>{{ResponseDataPay?.montoFinal | formatoDinero}}</span>
+                                <span><a>$</a>{{ResponseDataPay?.montoFinal | currency}}</span>
                             </div>
                         </div>
                     </div>

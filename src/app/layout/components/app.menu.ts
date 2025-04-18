@@ -58,14 +58,19 @@ export class AppMenu {
             icon: 'pi pi-fw pi-chart-line',
             items: [
                 {
-                    label: 'Pay In',
+                    label: 'PayIn',
                     icon: 'pi pi-fw pi-table',
                     routerLink: ['/pages/reports/transactions']
                 },
                 {
-                    label: 'Pay Out',
+                    label: 'PayOut',
                     icon: 'pi pi-fw pi-table',
                     routerLink: ['/pages/reports/dispersion']
+                },
+                {
+                    label: 'Conciliation',
+                    icon: 'pi pi-fw pi-table',
+                    routerLink: ['/pages/reports/conciliation']
                 },
             ]
         },

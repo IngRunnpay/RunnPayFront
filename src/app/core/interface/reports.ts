@@ -20,4 +20,21 @@ export interface RequestReportDispersion{
     fechaInicio: any
     fechaFin: any
  }
+
+ export interface RequestConciliationFecha{
+    idAplicacion: string
+    fecha: any
+ }
+  
+ export interface RequestExcelConciliationFecha{
+    idAplicacion: string
+    fechaIni: any
+    fechaFin: any
+ }
+ export interface RequestReportConsiliation{
+    idAplicacion: string
+    ini: number
+    fin: number
+    fecha: any
+ }
   

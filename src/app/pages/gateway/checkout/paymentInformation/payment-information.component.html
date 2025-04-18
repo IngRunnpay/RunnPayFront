@@ -114,8 +114,7 @@
                         <div class="py-2 mt-4">
                             <div class="flex justify-between items-center mb-4">
                                 <span class="text-surface-900 dark:text-surface-0 font-medium">Subtotal</span>
-                                <span class="text-surface-900 dark:text-surface-0"><a>$</a>{{ResponseDataPay?.monto |
-                                    formatoDinero}}</span>
+                                <span class="text-surface-900 dark:text-surface-0"><a>$</a>{{ResponseDataPay?.monto | currency}}</span>
                             </div>
                             <div class="flex justify-between items-center mb-4">
                                 <span class="text-surface-900 dark:text-surface-0 font-medium">Impuesto</span>
@@ -125,7 +124,7 @@
                                 <span class="text-surface-900 dark:text-surface-0 font-bold">Total</span>
                                 <span
                                     class="text-surface-900 dark:text-surface-0 font-medium text-xl"><a>$</a>{{ResponseDataPay?.montoFinal
-                                    | formatoDinero}}</span>
+                                    | currency}}</span>
                             </div>
                         </div>
                     </div>

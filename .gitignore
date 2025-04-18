@@ -9,6 +9,12 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

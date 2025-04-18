@@ -66,7 +66,7 @@ export class ReportTransacrtionComponent {
           this.toast.error(data.Mensaje);
         }
       }, (error) => {
-        this.toast.error('No logramos realizar tu gestión, intenta nuevamente.');
+        this.toast.error('We were unable to complete your request, please try again.');
       }
     );
   }
@@ -89,7 +89,7 @@ export class ReportTransacrtionComponent {
           this.toast.error(data.Mensaje);
         }
       }, (error) => {
-        this.toast.error('No logramos realizar tu gestión, intenta nuevamente.');
+        this.toast.error('We were unable to complete your request, please try again.');
       }
     );
   }
@@ -126,7 +126,7 @@ export class ReportTransacrtionComponent {
           this.toast.error(data.Mensaje);
         }
       }, (error) => {
-        this.toast.error('No logramos realizar tu gestión, intenta nuevamente.');
+        this.toast.error('We were unable to complete your request, please try again.');
       }
     );
   }

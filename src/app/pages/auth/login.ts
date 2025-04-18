@@ -144,7 +144,7 @@ export class Login {
                             }, (error) => {
                                 this.spinner.hide();
                                 this.authService.emptySession();
-                                this.toastr.error('No logramos realizar tu gestión, intenta nuevamente.');
+                                this.toastr.error('We were unable to complete your request, please try again.');
                             }
                         );
                     } else {
@@ -154,7 +154,7 @@ export class Login {
                     }
                 }, (error) => {
                     this.spinner.hide();
-                    this.toastr.error('No logramos realizar tu gestión, intenta nuevamente.');
+                    this.toastr.error('We were unable to complete your request, please try again.');
                 }
             )
 
@@ -190,7 +190,7 @@ export class Login {
 
                 }, (error) => {
                     this.spinner.hide();
-                    this.toastr.error('No logramos realizar tu gestión, intenta nuevamente.');
+                    this.toastr.error('We were unable to complete your request, please try again.');
                 }
             );
         } else {
