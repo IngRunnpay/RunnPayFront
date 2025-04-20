@@ -1,10 +1,11 @@
+<ngx-spinner>
+    <app-spinner></app-spinner>
+</ngx-spinner>
 <div class="card">
     <div class="font-semibold text-xl mb-4">Transactions</div>
     <p-table #dt1 [value]="DataReport" dataKey="id" [rows]="15" [rowHover]="true" [showGridlines]="true"
         [paginator]="false" responsiveLayout="scroll">
         <ng-template #caption>
-           
-
             <div>
                 <input type="text" pInputText [(ngModel)]="reportsService.requestReportTransaction.idTransaccion"
                     style="margin: 2px;" placeholder="Transaction ID" />
@@ -25,8 +26,8 @@
                     <button pButton label="Look for" class="p-button-outlined mb-2" icon="pi pi-search"
                         (click)="GetData()" style="margin: 2px;"></button>
                 </div>
-                <!-- <button pButton class="p-button-outlined mb-2" icon="pi pi-file-excel"
-                    style="margin: 2px; color: #258a47; border-color:#258a47 ;"></button> -->
+                <button pButton class="p-button-outlined mb-2" icon="pi pi-file-excel"
+                    style="margin: 2px; color: #258a47; border-color:#258a47 ;" (click)="Excel()"></button>
             </div>
 
         </ng-template>
@@ -94,7 +95,7 @@
                     {{ customer.Referencia}}
                 </td>
                 <td>
-                    {{ customer.MontoFinal  | currency}}
+                    {{ customer.MontoFinal | currency}}
                 </td>
                 <td>
                     {{ customer.Moneda}}

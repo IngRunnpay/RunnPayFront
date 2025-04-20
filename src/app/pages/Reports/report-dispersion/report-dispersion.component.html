@@ -1,3 +1,6 @@
+<ngx-spinner>
+    <app-spinner></app-spinner>
+</ngx-spinner>
 <div class="card">
     <div class="font-semibold text-xl mb-4">Dispersions</div>
     <p-table #dt1 [value]="DataReport" dataKey="id" [rows]="15" [rowHover]="true" [showGridlines]="true"
@@ -23,8 +26,8 @@
                     <button pButton label="Look for" class="p-button-outlined mb-2" icon="pi pi-search"
                         (click)="GetData()" style="margin: 2px;"></button>
                 </div>
-                <!-- <button pButton class="p-button-outlined mb-2" icon="pi pi-file-excel"
-                    style="margin: 2px; color: #258a47; border-color:#258a47 ;"></button> -->
+                <button pButton class="p-button-outlined mb-2" icon="pi pi-file-excel"
+                    style="margin: 2px; color: #258a47; border-color:#258a47 ;" (click)="Excel()"></button>
             </div>
 
         </ng-template>
@@ -83,7 +86,7 @@
                     <span>{{ customer.IdDispersion }}</span>
                 </td>
                 <td>
-                    <span>{{ customer.Monto  | currency }}</span>
+                    <span>{{ customer.Monto | currency }}</span>
                 </td>
                 <td>
                     <p-tag [value]="customer.Estado" [severity]="getSeverity(customer.Estado)" />

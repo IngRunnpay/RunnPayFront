@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'; 
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ButtonModule } from 'primeng/button';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -15,6 +15,8 @@ import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { PaginatorModule } from 'primeng/paginator';
 import { DatePickerModule } from 'primeng/datepicker';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { SpinnerComponent } from "../../../apps/spinner/spinner.component";
 @Component({
   selector: 'app-report-transacrtion',
   imports: [
@@ -30,53 +32,70 @@ import { DatePickerModule } from 'primeng/datepicker';
     InputTextModule,
     FormatoDineroPipe,
     PaginatorModule,
-    DatePickerModule
+    DatePickerModule,
+    NgxSpinnerModule,
+    SpinnerComponent
   ],
   templateUrl: './report-dispersion.component.html',
   styleUrl: './report-dispersion.component.scss'
 })
 export class ReportDispersionComponent {
-  DataReport: any[] = [];
-  totalPa = 0;
-  margin = 'margin: 2px;'
+  public DataReport: any[] = [];
+  public DataReportExcel: any[] = [];
+  public totalPa = 0;
+  public margin = 'margin: 2px;'
   constructor(
     public reportsService: ReportsService,
     private toast: ToastrService,
-    private authService: JwtService
+    private authService: JwtService,
+    private spinner: NgxSpinnerService
   ) { }
-//requestReportDispersion
+  //requestReportDispersion
   ngOnInit() {
     this.GetData();
   }
   GetData() {
-    var app = this.authService.getApp();
-    this.reportsService.requestReportDispersion.idAplicacion = app ?? '';
-    this.reportsService.requestReportDispersion.ini = 1;
-    this.reportsService.requestReportDispersion.fin = 15;
+    if (
+      (
+        this.reportsService.requestReportDispersion.fechaInicio == null &&
+        this.reportsService.requestReportDispersion.fechaFin != null
+      ) ||
+      (
+        this.reportsService.requestReportDispersion.fechaInicio != null &&
+        this.reportsService.requestReportDispersion.fechaFin == null
+      )) {
+      this.toast.error('Please select the correct date range to filter.');
+    } else {
+      var app = this.authService.getApp();
+      this.reportsService.requestReportDispersion.idAplicacion = app ?? '';
+      this.reportsService.requestReportDispersion.ini = 1;
+      this.reportsService.requestReportDispersion.fin = 15;
 
-    this.reportsService.GetReportDispersion().subscribe(
-      (data) => {
-        if (data.Respuesta) {
-          this.DataReport = data.Data;
-          this.totalPa = this.DataReport[0].Conteo;
-          this.reportsService.contentData.pageNumber = 1;
-        } else {
-          this.toast.error(data.Mensaje);
+      this.reportsService.GetReportDispersion().subscribe(
+        (data) => {
+          if (data.Respuesta) {
+            this.DataReport = data.Data;
+            this.totalPa = this.DataReport[0].Conteo;
+            this.reportsService.contentData.pageNumber = 1;
+          } else {
+            this.toast.error(data.Mensaje);
+          }
+        }, (error) => {
+          this.toast.error('We were unable to complete your request, please try again.');
         }
-      }, (error) => {
-        this.toast.error('We were unable to complete your request, please try again.');
-      }
-    );
+      );
+    }
+
   }
 
   clear() {
-    this.reportsService.requestReportDispersion.ini= 1,
-    this.reportsService.requestReportDispersion.fin= 15,
-    this.reportsService.requestReportDispersion.idDispersion= null,
-    this.reportsService.requestReportDispersion.referencia= '',
-    this.reportsService.requestReportDispersion.documento= '',
-    this.reportsService.requestReportDispersion.fechaInicio= null,
-    this.reportsService.requestReportDispersion.fechaFin= null
+    this.reportsService.requestReportDispersion.ini = 1;
+    this.reportsService.requestReportDispersion.fin = 15;
+    this.reportsService.requestReportDispersion.idDispersion = null;
+    this.reportsService.requestReportDispersion.referencia = null;
+    this.reportsService.requestReportDispersion.documento = null;
+    this.reportsService.requestReportDispersion.fechaInicio = null;
+    this.reportsService.requestReportDispersion.fechaFin = null;
     this.reportsService.contentData.pageNumber = 1;
     this.reportsService.GetReportDispersion().subscribe(
       (data) => {
@@ -108,26 +127,83 @@ export class ReportDispersionComponent {
         return 'warn';
     }
   }
-  PageChange (event: any){
-    this.reportsService.contentData.pageNumber =  event.page + 1;
-    this.reportsService.contentData.pageSize = event.rows;
+  PageChange(event: any) {
+    if (
+      (
+        this.reportsService.requestReportDispersion.fechaInicio == null &&
+        this.reportsService.requestReportDispersion.fechaFin != null
+      ) ||
+      (
+        this.reportsService.requestReportDispersion.fechaInicio != null &&
+        this.reportsService.requestReportDispersion.fechaFin == null
+      )) {
+      this.toast.error('Please select the correct date range to filter.');
+    } else {
+      this.reportsService.contentData.pageNumber = event.page + 1;
+      this.reportsService.contentData.pageSize = event.rows;
 
-    this.reportsService.requestReportDispersion.fin =   this.reportsService.contentData.pageNumber * this.reportsService.contentData.pageSize;
-    this.reportsService.requestReportDispersion.ini =  this.reportsService.requestReportDispersion.fin  - this.reportsService.contentData.pageSize;
-    this.reportsService.requestReportDispersion.ini  = (this.reportsService.requestReportDispersion.ini  == 0) ? 1 : this.reportsService.requestReportDispersion.ini;
+      this.reportsService.requestReportDispersion.fin = this.reportsService.contentData.pageNumber * this.reportsService.contentData.pageSize;
+      this.reportsService.requestReportDispersion.ini = this.reportsService.requestReportDispersion.fin - this.reportsService.contentData.pageSize;
+      this.reportsService.requestReportDispersion.ini = (this.reportsService.requestReportDispersion.ini == 0) ? 1 : this.reportsService.requestReportDispersion.ini;
 
-    this.reportsService.GetReportDispersion().subscribe(
-      (data) => {
-        if (data.Respuesta) {
-          this.DataReport = data.Data;
-          this.totalPa = this.DataReport[0].Conteo;
-        } else {
-          this.toast.error(data.Mensaje);
+      this.reportsService.GetReportDispersion().subscribe(
+        (data) => {
+          if (data.Respuesta) {
+            this.DataReport = data.Data;
+            this.totalPa = this.DataReport[0].Conteo;
+          } else {
+            this.toast.error(data.Mensaje);
+          }
+        }, (error) => {
+          this.toast.error('We were unable to complete your request, please try again.');
         }
-      }, (error) => {
-        this.toast.error('We were unable to complete your request, please try again.');
+      );
+    }
+
+  }
+
+  Excel() {
+    if (this.reportsService.requestReportDispersion.idDispersion == null &&
+      this.reportsService.requestReportDispersion.referencia == null &&
+      this.reportsService.requestReportDispersion.documento == null &&
+      this.reportsService.requestReportDispersion.fechaInicio == null &&
+      this.reportsService.requestReportDispersion.fechaFin == null
+    ) {
+      this.toast.error('Select at least one filter to generate your file');
+    } else {
+      if (
+        (
+          this.reportsService.requestReportDispersion.fechaInicio == null &&
+          this.reportsService.requestReportDispersion.fechaFin != null
+        ) ||
+        (
+          this.reportsService.requestReportDispersion.fechaInicio != null &&
+          this.reportsService.requestReportDispersion.fechaFin == null
+        )) {
+        this.toast.error('Please select the correct date range to filter.');
+      } else {
+        this.spinner.show();
+        this.reportsService.requestReportTransaction.ini = 1;
+        this.reportsService.requestReportTransaction.fin = this.totalPa + 200;
+        this.reportsService.GetReportDispersion().subscribe(
+          (data) => {
+            if (data.Respuesta) {
+              this.DataReportExcel = data.Data;
+              this.reportsService.exportToExcel(this.DataReportExcel, 'PayOutRunnPay');
+              this.spinner.hide();
+            } else {
+              this.toast.error(data.Mensaje);
+              this.spinner.hide();
+            }
+          }, (error) => {
+            this.toast.error('We were unable to complete your request, please try again.');
+            this.spinner.hide();
+          }
+        );
       }
-    );
+
+    }
+
   }
 
 }
